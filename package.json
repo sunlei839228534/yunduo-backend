@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.1.1",
     "nodemon": "^2.0.16",
     "require-directory": "^2.1.1"

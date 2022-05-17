@@ -1,8 +1,11 @@
 const Router = require('koa-router')
+const { HttpException, ParameterException } = require('../core/http-exception')
 
 const router = new Router()
 
 router.get('/queryClasses', async (ctx, next) => {
+  const error = new ParameterException()
+  throw error
   ctx.body = {
     data: [
       {

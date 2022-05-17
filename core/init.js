@@ -7,7 +7,8 @@ class InitManager {
   }
 
   static initLoadRouters(app) {
-    requireDirectory(module, '../api', {
+    const apiDirectory = `${process.cwd()}/api`
+    requireDirectory(module, apiDirectory, {
       visit: onLoadDirectory
     })
 
