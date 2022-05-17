@@ -9,10 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.1.1",
+    "lodash": "^4.17.21",
     "nodemon": "^2.0.16",
-    "require-directory": "^2.1.1"
+    "require-directory": "^2.1.1",
+    "validator": "^13.7.0"
   }
 }

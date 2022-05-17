@@ -3,9 +3,10 @@ const { HttpException, ParameterException } = require('../core/http-exception')
 
 const router = new Router()
 
-router.get('/queryClasses', async (ctx, next) => {
-  const error = new ParameterException()
-  throw error
+const { PostiveIntegerValidator } = require('../validators/validator')
+
+router.get('/queryClasses/:id', async (ctx, next) => {
+  const v = await new PostiveIntegerValidator().validate(ctx)
   ctx.body = {
     data: [
       {

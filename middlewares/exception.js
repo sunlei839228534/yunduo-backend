@@ -11,6 +11,12 @@ const catchError = async (ctx, next) => {
         request: `${ctx.method} ${ctx.path}`
       }
       ctx.status = error.code
+    } else {
+      ctx.body = {
+        msg: '不可知的错误！',
+        error_code: 999,
+        request: `${ctx.method} ${ctx.path}`
+      }
     }
   }
 }
