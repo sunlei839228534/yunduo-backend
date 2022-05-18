@@ -4,6 +4,7 @@ const requireDirectory = require("require-directory")
 class InitManager {
   static initCore(app) {
     InitManager.initLoadRouters(app)
+    InitManager.loadConfig()
   }
 
   static initLoadRouters(app) {
@@ -17,6 +18,12 @@ class InitManager {
         app.use(obj.routes())
       }
     }
+  }
+
+  static loadConfig(path = '') {
+    const configPath = path || process.cwd() + '/config/config.js'
+    const config = require(configPath)
+    global.config = config
   }
 }
 module.exports = InitManager
