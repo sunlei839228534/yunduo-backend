@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize')
 const { database } = require('../config/config')
 
-const { dbName, user, prot, password, host } = database
+const { dbName, user, port, password, host } = database
 
 const sequelize = new Sequelize(dbName, user, password, {
   dialect: 'mysql',
   host,
-  prot,
+  port,
   logging: true,
   timezone: '+08:00',
   define: {
@@ -20,7 +20,7 @@ const sequelize = new Sequelize(dbName, user, password, {
 })
 
 sequelize.sync({
-  focus: false
+  focus: true
 })
 
 module.exports = {
