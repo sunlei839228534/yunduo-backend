@@ -11,6 +11,30 @@ class PostiveIntegerValidator extends LinValidator {
   }
 }
 
+class LoginValidator extends LinValidator {
+  constructor() {
+    super()
+    this.email = [
+      new Rule('isEmail', '不符合Email规范！')
+    ]
+    this.password = [
+      new Rule('isLength', '密码至少6个字符，最多32个字符', {
+        min: 6,
+        max: 32
+      })
+    ]
+  }
+  async validateHasUser(vals) {
+    const { email } = vals.body
+    const user = await User.findOne({
+      where: email
+    })
+    if (!user) {
+      throw new Error('没有该用户！')
+    }
+  }
+}
+
 class RegisterValidator extends LinValidator {
   constructor() {
     super()
@@ -51,7 +75,9 @@ class RegisterValidator extends LinValidator {
   }
 }
 
+
 module.exports = {
   PostiveIntegerValidator,
-  RegisterValidator
+  RegisterValidator,
+  LoginValidator
 }

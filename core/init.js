@@ -5,6 +5,7 @@ class InitManager {
   static initCore(app) {
     InitManager.initLoadRouters(app)
     InitManager.loadConfig()
+    InitManager.errorConfig()
   }
 
   static initLoadRouters(app) {
@@ -24,6 +25,10 @@ class InitManager {
     const configPath = path || process.cwd() + '/config/config.js'
     const config = require(configPath)
     global.config = config
+  }
+  static errorConfig() {
+    const errors = require(process.cwd() + '/core/http-exception.js')
+    global.errs = errors
   }
 }
 module.exports = InitManager
