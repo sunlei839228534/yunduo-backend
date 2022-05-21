@@ -11,6 +11,7 @@ router.post('user/login', async (ctx, next) => {
 })
 
 router.post('/user/register', async (ctx, next) => {
+  //验证参数，验证是否已有同样的email
   const v = await new RegisterValidator().validate(ctx)
 
   const user = {
@@ -18,7 +19,9 @@ router.post('/user/register', async (ctx, next) => {
     password: v.get('body.password1'),
     nickname: v.get('body.nickname')
   }
+  // 在数据库中创建
   const r = await User.create(user)
+
   throw new global.errs.Success()
 })
 
