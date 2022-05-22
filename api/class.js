@@ -1,18 +1,14 @@
 const Router = require('koa-router')
 const { HttpException, ParameterException } = require('../core/http-exception')
+const { Auth } = require('../middlewares/auth')
 
-const router = new Router()
+const router = new Router({
+  prefix: '/class'
+})
 
 
-router.get('/queryClasses/:id', async (ctx, next) => {
-  ctx.body = {
-    data: [
-      {
-        name: "少儿英语",
-        timeSpend: '2h'
-      }
-    ]
-  }
+router.get('/queryClasses/:id', new Auth(8).m, async (ctx, next) => {
+  ctx.body = ctx.auth.uid
   await next()
 })
 
