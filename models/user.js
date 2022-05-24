@@ -14,7 +14,6 @@ class User extends Model {
       throw new global.errs.AuthFailed('账号不存在')
     }
     const correct = bcrypt.compareSync(plainPassword, user.password)
-
     if (!correct) {
       throw new global.errs.AuthFailed('密码不正确')
     }

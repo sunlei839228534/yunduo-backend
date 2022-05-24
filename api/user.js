@@ -10,6 +10,8 @@ const { User } = require('../models/user')
 
 router.post('/login', async (ctx, next) => {
   const v = await new LoginValidator().validate(ctx)
+  const user = await User.verifyEmailPassword(v.get('body.account'), v.get('body.password'))
+
 })
 
 router.post('/register', async (ctx, next) => {

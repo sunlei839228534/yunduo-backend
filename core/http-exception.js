@@ -1,3 +1,5 @@
+const { LinValidator, Rule } = require("./lin-validator")
+
 class HttpException extends Error {
   constructor(msg = '服务器异常', errorCode = 10000, code = 400) {
     super()
@@ -53,11 +55,12 @@ class Forbidden extends HttpException {
   }
 }
 
+
 module.exports = {
   HttpException,
   AuthFailed,
   NotFound,
   ParameterException,
   Success,
-  Forbidden
+  Forbidden,
 }

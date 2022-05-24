@@ -2,6 +2,20 @@ const { LinValidator, Rule } = require('../core/lin-validator')
 
 const { User } = require('../models/user')
 
+class LoginValidator extends LinValidator {
+  constructor() {
+    super()
+    this.account = [
+      new Rule('isEmail', '账号需要是Email！')
+    ]
+    this.password = [
+      new Rule('isLength', '密码至少6个字符，最多32个字符', {
+        min: 6,
+        max: 32
+      })
+    ]
+  }
+}
 
 class RegisterValidator extends LinValidator {
   constructor() {
@@ -61,7 +75,19 @@ class TokenValidator extends LinValidator {
   }
 }
 
+class NotEmptyValidator extends LinValidator {
+  constructor() {
+    super()
+    this.token = [
+      new Rule('isLength', '不允许为空！', { min: 1 })
+    ]
+  }
+}
+
+
 module.exports = {
   RegisterValidator,
-  TokenValidator
+  TokenValidator,
+  LoginValidator,
+  NotEmptyValidator
 }
