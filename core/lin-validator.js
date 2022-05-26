@@ -5,9 +5,7 @@
  */
 
 const validator = require('validator')
-const {
-  ParameterException
-} = require('./http-exception')
+const { ParameterException } = require('./http-exception')
 const {
   get,
   last,
@@ -17,7 +15,6 @@ const {
 const {
   findMembers
 } = require('./util')
-
 
 class LinValidator {
   constructor() {
@@ -83,7 +80,7 @@ class LinValidator {
       }
     }
     if (errorMsgs.length != 0) {
-      throw new ParameterException(errorMsgs)
+      throw new global.errs.ParameterException(errorMsgs)
     }
     ctx.v = this
     return this

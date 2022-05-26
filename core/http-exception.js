@@ -57,10 +57,10 @@ class Forbidden extends HttpException {
 
 
 module.exports = {
+  ParameterException,
   HttpException,
   AuthFailed,
   NotFound,
-  ParameterException,
   Success,
   Forbidden,
 }

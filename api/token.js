@@ -11,7 +11,7 @@ router.post('/token', async (ctx, next) => {
   const user = await User.verifyEmailPassword(v.get('body.account'), v.get('body.password'))
   const token = generateToken(user.id, Auth.USER)
   ctx.body = {
-    token
+    token,
   }
 })
 

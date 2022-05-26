@@ -5,10 +5,10 @@ const { Sequelize, Model } = require('sequelize')
 
 class User extends Model {
   static async verifyEmailPassword(email, plainPassword) {
-    const user = await User.findOne({
+    const user = await User.scope('bh').findOne({
       where: {
         email
-      }
+      },
     })
     if (!user) {
       throw new global.errs.AuthFailed('账号不存在')
