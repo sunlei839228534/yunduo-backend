@@ -46,12 +46,12 @@ class RegisterValidator extends LinValidator {
 class TokenValidator extends LinValidator {
   constructor() {
     super()
-    this.account = [
+    this.email = [
       new Rule('isLength', '不符合账号规则', {
         min: 4,
         max: 32
       }),
-      new Rule('isEmail', '账号必须是Email!')
+      new Rule('isEmail', '账号必须是Email格式!')
     ]
     this.password = [
       new Rule('isLength', '密码至少需要6个字符', {

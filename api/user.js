@@ -13,8 +13,8 @@ const { Auth } = require('../middlewares/auth')
 router.post('/login', async (ctx, next) => {
   const v = await new LoginValidator().validate(ctx)
 
-  const user = await User.verifyEmailPassword(v.get('body.account'), v.get('body.password'))
-  const token = generateToken(user.id, Auth.USER)
+  const user = await User.verifyEmailPassword(v.get('body.email'), v.get('body.password'))
+  const token = generateToken(user.id, Auth.USER, user)
   ctx.body = {
     token,
     user: {
@@ -27,15 +27,20 @@ router.post('/login', async (ctx, next) => {
 router.post('/register', async (ctx, next) => {
   //验证参数，验证是否已有同样的email
   const v = await new RegisterValidator().validate(ctx)
-  const user = {
+  // 在数据库中创建
+  const user = await User.create({
     email: v.get('body.email'),
     password: v.get('body.password1'),
     nickname: v.get('body.nickname')
+  })
+  const token = generateToken(user.id, Auth.USER, user)
+  ctx.body = {
+    token,
+    user: {
+      nickname: user.nickname,
+      email: user.email
+    }
   }
-  // 在数据库中创建
-  const r = await User.create(user)
-
-  throw new global.errs.Success()
 })
 
 

@@ -21,4 +21,5 @@ Student.init({
   },
 }, { sequelize, tableName: 'student' })
 
+
 module.exports = { Student }

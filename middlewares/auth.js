@@ -41,10 +41,15 @@ class Auth {
 
   static verifyToken(token) {
     try {
-      jwt.verify(token, global.config.security.secretKey)
-      return true
+      const { user } = jwt.verify(token, global.config.security.secretKey)
+      debugger
+      return {
+        nickname: user.nickname,
+        email: user.email
+      }
     } catch (error) {
-      return false
+      console.log(error);
+      throw new global.errs.AuthFailed()
     }
   }
 }

@@ -11,7 +11,7 @@ router.post('/create', new Auth(8).m, async (ctx, next) => {
   const v = await new CreateStudentValidator().validate(ctx)
   const student = await Student.create({
     name: v.get('body.name'),
-    nickname: v.get('body.Nickname')
+    nickname: v.get('body.nickname')
   })
   throw new global.errs.Success()
 })
