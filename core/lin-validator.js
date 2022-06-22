@@ -70,7 +70,6 @@ class LinValidator {
     const memberKeys = findMembers(this, {
       filter: this._findMembersFilter.bind(this)
     })
-
     const errorMsgs = []
     // const map = new Map(memberKeys)
     for (let key of memberKeys) {

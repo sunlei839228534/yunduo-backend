@@ -52,11 +52,19 @@ const generateToken = function (uid, scope, user) {
   return token
 }
 
+const getEnumVal = (enumObj, val) => {
+  const vals = Object.values(enumObj)
+  const hasVal = vals.includes(val)
+  if (!hasVal) {
+    throw new Error('枚举中不包含这个值！')
+  }
+}
 
 
 module.exports = {
   findMembers,
   generateToken,
+  getEnumVal
 }
 
 

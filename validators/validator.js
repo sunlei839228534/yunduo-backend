@@ -80,6 +80,7 @@ class CreateStudentValidator extends LinValidator {
   }
 }
 
+
 module.exports = {
   RegisterValidator,
   TokenValidator,
