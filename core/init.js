@@ -6,6 +6,7 @@ class InitManager {
     InitManager.initLoadRouters(app)
     InitManager.loadConfig()
     InitManager.errorConfig()
+    InitManager.utilConfig()
   }
 
   static initLoadRouters(app) {
@@ -29,6 +30,14 @@ class InitManager {
   static errorConfig() {
     const errors = require(process.cwd() + '/core/http-exception.js')
     global.errs = errors
+  }
+
+  //调试用的wait函数
+  static utilConfig() {
+    function wait(ms) {
+      return new Promise((resolve, reject) => setTimeout(() => { resolve() }, ms))
+    }
+    global.wait = wait
   }
 }
 module.exports = InitManager

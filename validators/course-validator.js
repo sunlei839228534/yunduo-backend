@@ -11,7 +11,7 @@ const CHARGE_MODE_TYPE = {
   By_TIME: 2
 }
 
-class CreateCourseValidator extends LinValidator {
+class BaseCourseValidator extends LinValidator {
   constructor() {
     super()
     this.name = [
@@ -25,8 +25,7 @@ class CreateCourseValidator extends LinValidator {
       new Rule('isOptional'),
       new Rule('isInt', '需要是个不小于零的整数', { min: 1 })
     ]
-  }
-  //验证传的值是否是枚举项
+  }  //验证传的值是否是枚举项
   validateModeType(vals) {
     const { chargeMode, teachingMode } = vals.body
     getEnumVal(TEACHING_MODE_TYPE, teachingMode)
@@ -41,6 +40,13 @@ class CreateCourseValidator extends LinValidator {
       throw new Error('chargeStandard必须是一个整数')
     }
   }
+}
+
+class CreateCourseValidator extends BaseCourseValidator {
+  constructor() {
+    super()
+  }
+
   async validateCourseName(vals) {
     const { name } = vals.body
     const course = await Course.findOne({
@@ -52,6 +58,23 @@ class CreateCourseValidator extends LinValidator {
   }
 }
 
+
+class UpDateCourseValidator extends BaseCourseValidator {
+  constructor() {
+    super()
+  }
+}
+
+class DestroyCourseValidator extends LinValidator {
+  constructor() {
+    super()
+    this.id = []
+  }
+}
+
 module.exports = {
-  CreateCourseValidator
+  CHARGE_MODE_TYPE,
+  CreateCourseValidator,
+  DestroyCourseValidator,
+  UpDateCourseValidator
 }
