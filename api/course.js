@@ -7,7 +7,7 @@ const router = new Router({
   prefix: '/course'
 })
 
-router.post('/create', async (ctx, next) => {
+router.post('/create', new Auth(8).m, async (ctx, next) => {
   const v = await new CreateCourseValidator().validate(ctx)
 
   const course = await Course.create({
@@ -20,12 +20,12 @@ router.post('/create', async (ctx, next) => {
   throw new global.errs.Success()
 })
 
-router.post('/query', async (ctx, next) => {
+router.post('/query', new Auth(8).m, async (ctx, next) => {
   const courses = await Course.queryCourse()
   ctx.body = courses
 })
 
-router.delete('/:id', async (ctx, next) => {
+router.delete('/:id', new Auth(8).m, async (ctx, next) => {
   const v = await new DestroyCourseValidator().validate(ctx)
   await Course.destroy({
     where: {
@@ -36,7 +36,7 @@ router.delete('/:id', async (ctx, next) => {
 })
 
 
-router.put('/:id', async (ctx, next) => {
+router.put('/:id', new Auth(8).m, async (ctx, next) => {
   const v = await new UpDateCourseValidator().validate(ctx)
 
   await Course.update(v.get('body'), {

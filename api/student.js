@@ -8,16 +8,8 @@ const router = new Router({
 })
 
 router.post('/create', new Auth(8).m, async (ctx, next) => {
-  const v = await new CreateStudentValidator().validate(ctx)
-  const student = await Student.create({
-    name: v.get('body.name'),
-    nickname: v.get('body.nickname')
-  })
-  throw new global.errs.Success()
+
 })
 
-router.get('/queryStudent', async (ctx, next) => {
-  await next()
-})
 
 module.exports = router

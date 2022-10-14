@@ -1,6 +1,7 @@
 const { LinValidator, Rule } = require('../core/lin-validator')
 const { getEnumVal } = require('../core/util')
 const { Course } = require('../models/course')
+const { Op } = require('sequelize')
 
 const TEACHING_MODE_TYPE = {
   ONE_TO_ONE: 1,
@@ -62,6 +63,21 @@ class CreateCourseValidator extends BaseCourseValidator {
 class UpDateCourseValidator extends BaseCourseValidator {
   constructor() {
     super()
+  }
+  async validateCourseNameRepeat(vals) {
+    const { name } = vals.body
+    const { id } = vals.path
+    const course = await Course.findOne({
+      where: {
+        id: {
+          [Op.ne]: id
+        },
+        name
+      }
+    })
+    if (course) {
+      throw new Error('课程名已存在！')
+    }
   }
 }
 

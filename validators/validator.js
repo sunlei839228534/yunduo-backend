@@ -71,19 +71,10 @@ class NotEmptyValidator extends LinValidator {
   }
 }
 
-class CreateStudentValidator extends LinValidator {
-  constructor() {
-    super()
-    this.name = [
-      new Rule('isLength', '姓名不允许为空！', { min: 1 })
-    ]
-  }
-}
 
 
 module.exports = {
   RegisterValidator,
   TokenValidator,
   NotEmptyValidator,
-  CreateStudentValidator
 }
