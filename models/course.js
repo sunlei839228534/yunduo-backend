@@ -9,11 +9,13 @@ class Course extends Model {
     const courses = await Course.findAll({
       attributes: [
         'id', 'name', 'teachingMode', 'chargeMode', 'chargeStandard'
-      ]
+      ],
+      order: [['created_at', 'DESC']]
     })
     return courses
   }
 }
+
 
 Course.init({
   id: {

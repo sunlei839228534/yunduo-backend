@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "serve": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -18,7 +19,7 @@
     "koa-router": "^10.1.1",
     "lodash": "^4.17.21",
     "mysql2": "^2.3.3",
-    "nodemon": "^2.0.16",
+    "nodemon": "^2.0.20",
     "require-directory": "^2.1.1",
     "sequelize": "^6.19.1",
     "validator": "^13.7.0"

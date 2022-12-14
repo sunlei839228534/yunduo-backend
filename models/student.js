@@ -5,7 +5,12 @@ const { CreateStudentValidator } = require('../validators/validator')
 const { STRING } = require('sequelize')
 
 class Student extends Model {
-
+  static async queryStudent(config = {}) {
+    const students = await Student.findAll({
+      attributes: ['id', 'name', 'status', 'code', 'mobile', 'wechat', 'sex'],
+    })
+    return students
+  }
 }
 
 Student.init({
@@ -14,11 +19,12 @@ Student.init({
     primaryKey: true,
     autoIncrement: true
   },
+  //学员名称
   name: {
     type: Sequelize.STRING
   },
-  nickName: {
-    type: Sequelize.STRING
+  status: {
+    type: Sequelize.INTEGER,
   },
   //学员编号
   code: {
@@ -36,9 +42,6 @@ Student.init({
   sex: {
     type: Sequelize.INTEGER
   },
-  birthday: {
-    type: Sequelize.DATE
-  }
 }, { sequelize, tableName: 'student' })
 
 
