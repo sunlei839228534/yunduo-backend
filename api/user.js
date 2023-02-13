@@ -43,5 +43,9 @@ router.post('/register', async (ctx, next) => {
   }
 })
 
+router.get('/query', async (ctx, next) => {
+  const users = await User.findAll()
+  ctx.body = users
+})
 
 module.exports = router

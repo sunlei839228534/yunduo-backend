@@ -35,7 +35,7 @@ class BaseCourseValidator extends LinValidator {
   validateChargeStandard(vals) {
     const { chargeStandard, chargeMode } = vals.body
     if (chargeMode === CHARGE_MODE_TYPE.By_CLASS_HOUR && !chargeStandard) {
-      throw new Error('按课时收费，chargeStandard必须有值')
+      throw new Error('按课时收费 chargeStandard必须有值')
     }
     if (chargeStandard && typeof chargeStandard !== 'number') {
       throw new Error('chargeStandard必须是一个整数')
